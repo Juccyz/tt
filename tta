@@ -336,7 +336,7 @@ function autoPopBalloon()
             hrp.CFrame = CFrame.new(balloonData.LandPosition)
             print('waiting for drop')
             hrp.Anchored = false
-            task.wait(4)
+            task.wait(1.3)
             hrp.Anchored = true
             wait(0.2)
         end
