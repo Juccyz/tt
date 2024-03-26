@@ -1,0 +1,158 @@
+function mainPremium()
+    getgenv().Config = {}
+
+    repeat
+        task.wait()
+        local vu = game:GetService("VirtualUser")
+        game:GetService("Players").LocalPlayer.Idled:connect(
+            function()
+                vu:Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+                wait(1)
+                vu:Button2Up(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+            end
+        )
+    until game:IsLoaded()
+
+    local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/jelqmaster/orionmod/main/bop"))()
+    local Window =
+        OrionLib:MakeWindow(
+        {Name = "PS99 Script [Premium] (Ver. 0.4)", HidePremium = false, SaveConfig = false, ConfigFolder = "OrionTest"}
+    )
+
+     local Info =
+            Window:MakeTab(
+            {
+                Name = "INFO",
+                Icon = "rbxassetid://4483345998",
+                PremiumOnly = false
+            }
+        )
+
+    local Tab =
+        Window:MakeTab(
+        {
+            Name = "Fishing",
+            Icon = "rbxassetid://4483345998",
+            PremiumOnly = false
+        }
+    )
+
+    local Tab2 =
+        Window:MakeTab(
+        {
+            Name = "Digging",
+            Icon = "rbxassetid://4483345998",
+            PremiumOnly = false
+        }
+    )
+
+    local Tab3 =
+        Window:MakeTab(
+        {
+            Name = "Hidden Presents",
+            Icon = "rbxassetid://4483345998",
+            PremiumOnly = false
+        }
+    )
+
+    local Merchant =
+        Window:MakeTab(
+        {
+            Name = "Merchant",
+            Icon = "rbxassetid://4483345998",
+            PremiumOnly = false
+        }
+    )
+
+    local Webhook =
+        Window:MakeTab(
+        {
+            Name = "Webhook",
+            Icon = "rbxassetid://4483345998",
+            PremiumOnly = false
+        }
+    )
+
+    local Tab4 =
+        Window:MakeTab(
+        {
+            Name = "Mailing/Transfer",
+            Icon = "rbxassetid://4483345998",
+            PremiumOnly = false
+        }
+    )
+
+    local Misc =
+        Window:MakeTab(
+        {
+            Name = "Misc",
+            Icon = "rbxassetid://4483345998",
+            PremiumOnly = false
+        }
+    )
+
+    local Tab5 =
+        Window:MakeTab(
+        {
+            Name = "VIP Features 1",
+            Icon = "rbxassetid://4483345998",
+            PremiumOnly = false
+        }
+    )
+
+    local Tab6 =
+        Window:MakeTab(
+        {
+            Name = "VIP Features 2",
+            Icon = "rbxassetid://4483345998",
+            PremiumOnly = false
+        }
+    )
+
+    Info:AddParagraph("BEWARE!","If you paid real money or more than 1m gems for this script you got scammed.")
+    Info:AddLabel("https://discord.gg/HXZtG92k")
+    Info:AddButton({
+    	Name = "Copy Discord Link",
+    	Callback = function()
+          		setclipboard("https://discord.gg/HXZtG92k")
+      	end    
+    })
+
+    local Section =
+        Tab:AddSection(
+        {
+            Name = "Advanced Fishing"
+        }
+    )
+
+    Tab:AddToggle(
+        {
+            Name = "Auto tele, Fishing, Deep pool!",
+            Default = false,
+            Callback = function(v)
+                getgenv().config.Fishing.Enabled = v
+                spawn(fastTeleFishArea)
+            end
+        }
+    )
+
+    -- Fast tele fishing
+function fastTeleFishArea()
+    if getgenv().config.Fishing.Enabled and getgenv().config.Fishing.PlaceToFish == "AdvancedFishing" then
+        if not game:GetService("Workspace").__THINGS.__INSTANCE_CONTAINER.Active:FindFirstChild("AdvancedFishing") then
+            game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = game:GetService("Workspace").__THINGS.Instances.AdvancedFishing.Teleports.Enter.CFrame
+        end
+    elseif getgenv().config.Fishing.Enabled and getgenv().config.Fishing.PlaceToFish == "NormalFishing" then
+        if not game:GetService("Workspace").__THINGS.__INSTANCE_CONTAINER.Active:FindFirstChild("Fishing") then
+            game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = game:GetService("Workspace").__THINGS.Instances.Fishing.Teleports.Enter.CFrame
+        end
+    end
+	wait(2)
+    if getgenv().config.Fishing.Enabled and getgenv().config.Fishing.PlaceToFish == "AdvancedFishing" then
+        spawn(moveToFishingDerec)
+        spawn(ultrafpsboost)
+    elseif getgenv().config.Fishing.Enabled and getgenv().config.Fishing.PlaceToFish == "NormalFishing" then
+        spawn(moveToFishingDerec)
+        spawn(ultrafpsboost)
+    end
+end
